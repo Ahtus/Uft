@@ -1,0 +1,1 @@
+﻿var __testDataSource={items:[{dataFilePath:'Default.xlsx',dataFileFormat:'excel',dataFileFolder:'C:\\Users\\84862\\Documents\\UFT One\\TutorialFunctionLibraries\\Shopping\\Script\\AOSTest\\Res58',namePairs:[]}]};

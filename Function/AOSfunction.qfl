@@ -1,0 +1,46 @@
+﻿Function Login
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("UserMenu").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("username").Set DataTable("username", dtGlobalSheet)
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("password").SetSecure DataTable("password", dtGlobalSheet)
+Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("sign_in_btnundefined").Click
+End Function
+Function Order
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("SpeakersCategory").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("SOLD OUT SHOP NOW Bose").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("quantity").Set DataTable("Soluongloa", dtGlobalSheet)
+Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("save_to_cart").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("ShoppingCart").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("$539.98").Check CheckPoint("TotalShopping")
+Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("check_out_btn").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("$719.98").Check CheckPoint("TotalOrder")
+End Function
+Function Checkout
+Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("next_btn").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("safepay_username").Set "asdsd"
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("SafePay password").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("safepay_password").SetSecure "6477a9d23bab26c60c4d1a8660862d5c7d48833a7855"
+Browser("Advantage Shopping").Page("Advantage Shopping").WebCheckBox("save_safepay").Set "OFF"
+Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("pay_now_btn_SAFEPAY").Click
+Wait 3
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("Thank you for buying with").Check CheckPoint("Thank you for buying with Advantage")
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("trackingNumberLabel").Check CheckPoint("trackingNumberLabel")
+trackingNumber=Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("trackingNumberLabel").GetROProperty("text")
+DataTable.Value ("trackingNumberLabel", dtGlobalSheet)=trackingNumber
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("orderNumberLabel").Check CheckPoint("orderNumberLabel")
+orderNumberLabel=Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("orderNumberLabel").GetROProperty("text")
+Datatable.Value ("orderNumberLabel", dtGlobalSheet)=orderNumberLabel
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("Total").Check CheckPoint("Checktotal")
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("UserMenu").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("My orders").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("MaGD").Check CheckPoint("CheckGD")
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("REMOVE").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("confBtn_1").Click
+
+End Function
+Function Logout
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("UserMenu").Click
+Browser("Advantage Shopping").Page("Advantage Shopping").Link("Sign out").Click
+Datatable.Export("C:\Users\84862\Documents\UFT One\TutorialFunctionLibraries\Shopping\Export Run Reaults\Test.xlsx")
+Browser("Advantage Shopping").CloseAllTabs
+End Function
+
