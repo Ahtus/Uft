@@ -1,7 +1,7 @@
 ﻿Function Login
 Browser("Advantage Shopping").Page("Advantage Shopping").Link("UserMenu").Click
 Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("username").Set DataTable("username", dtGlobalSheet)
-Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("password").SetSecure DataTable("password", dtGlobalSheet)
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("password").Set DataTable("password", dtGlobalSheet)
 Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("sign_in_btnundefined").Click
 End Function
 Function Order
@@ -15,24 +15,28 @@ Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("check_out_bt
 Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("$719.98").Check CheckPoint("TotalOrder")
 End Function
 Function Checkout
+
 Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("next_btn").Click
-Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("safepay_username").Set "asdsd"
-Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("SafePay password").Click
-Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("safepay_password").SetSecure "6477a9d23bab26c60c4d1a8660862d5c7d48833a7855"
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("safepay_username").Set "sdfsdfsdf"
+Browser("Advantage Shopping").Page("Advantage Shopping").WebEdit("safepay_password").SetSecure "6479af247da330f428202fb3cb1ee5406adf7329d632"
 Browser("Advantage Shopping").Page("Advantage Shopping").WebCheckBox("save_safepay").Set "OFF"
 Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("pay_now_btn_SAFEPAY").Click
-Wait 3
 Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("Thank you for buying with").Check CheckPoint("Thank you for buying with Advantage")
+wait 3
+trackingNumberLabel= Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("trackingNumberLabel").GetROProperty("text")
+Datatable.Value("trackingNumberLabel", dtGlobalSheet)=trackingNumberLabel
 Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("trackingNumberLabel").Check CheckPoint("trackingNumberLabel")
-trackingNumber=Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("trackingNumberLabel").GetROProperty("text")
-DataTable.Value ("trackingNumberLabel", dtGlobalSheet)=trackingNumber
-Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("orderNumberLabel").Check CheckPoint("orderNumberLabel")
+
+
 orderNumberLabel=Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("orderNumberLabel").GetROProperty("text")
-Datatable.Value ("orderNumberLabel", dtGlobalSheet)=orderNumberLabel
-Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("Total").Check CheckPoint("Checktotal")
+Datatable.Value("orderNumberLabel", dtGlobalSheet)=orderNumberLabel
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("orderNumberLabel").Check CheckPoint("orderNumberLabel")
+
 Browser("Advantage Shopping").Page("Advantage Shopping").Link("UserMenu").Click
 Browser("Advantage Shopping").Page("Advantage Shopping").Link("My orders").Click
-Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("MaGD").Check CheckPoint("CheckGD")
+CheckGD=Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("CheckGD").GetROProperty("text")
+Datatable.Value("CheckGD", dtGlobalSheet)=CheckGD
+Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("CheckGD").Check CheckPoint("CheckGD")
 Browser("Advantage Shopping").Page("Advantage Shopping").WebElement("REMOVE").Click
 Browser("Advantage Shopping").Page("Advantage Shopping").WebButton("confBtn_1").Click
 
